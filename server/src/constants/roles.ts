@@ -1,0 +1,77 @@
+export enum UserRole {
+  SUPER_ADMIN = 'SUPER_ADMIN',
+  ORG_ADMIN = 'ORG_ADMIN',
+  MANAGER = 'MANAGER',
+  SUPPORT_AGENT = 'SUPPORT_AGENT',
+  CUSTOMER = 'CUSTOMER',
+}
+
+export enum Permission {
+  // Org Admin Permissions
+  MANAGE_ORGANIZATION = 'MANAGE_ORGANIZATION',
+  MANAGE_USERS = 'MANAGE_USERS',
+  MANAGE_ROLES = 'MANAGE_ROLES',
+  CONFIGURE_AI_AGENT = 'CONFIGURE_AI_AGENT',
+  MANAGE_BILLING = 'MANAGE_BILLING',
+  MANAGE_KNOWLEDGE_BASE = 'MANAGE_KNOWLEDGE_BASE',
+
+  // Manager Permissions
+  VIEW_TEAM_ANALYTICS = 'VIEW_TEAM_ANALYTICS',
+  ASSIGN_TICKETS = 'ASSIGN_TICKETS',
+  MANAGE_AGENTS = 'MANAGE_AGENTS',
+
+  // Support Agent Permissions
+  VIEW_ASSIGNED_TICKETS = 'VIEW_ASSIGNED_TICKETS',
+  REPLY_CUSTOMERS = 'REPLY_CUSTOMERS',
+  ESCALATE_TICKETS = 'ESCALATE_TICKETS',
+
+  // Customer Permissions
+  CREATE_CONVERSATIONS = 'CREATE_CONVERSATIONS',
+  VIEW_OWN_TICKETS = 'VIEW_OWN_TICKETS',
+  CHAT_WITH_AI = 'CHAT_WITH_AI',
+}
+
+export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
+  [UserRole.SUPER_ADMIN]: Object.values(Permission),
+
+  [UserRole.ORG_ADMIN]: [
+    Permission.MANAGE_ORGANIZATION,
+    Permission.MANAGE_USERS,
+    Permission.MANAGE_ROLES,
+    Permission.CONFIGURE_AI_AGENT,
+    Permission.MANAGE_BILLING,
+    Permission.MANAGE_KNOWLEDGE_BASE,
+    Permission.VIEW_TEAM_ANALYTICS,
+    Permission.ASSIGN_TICKETS,
+    Permission.MANAGE_AGENTS,
+    Permission.VIEW_ASSIGNED_TICKETS,
+    Permission.REPLY_CUSTOMERS,
+    Permission.ESCALATE_TICKETS,
+    Permission.CREATE_CONVERSATIONS,
+    Permission.VIEW_OWN_TICKETS,
+    Permission.CHAT_WITH_AI,
+  ],
+
+  [UserRole.MANAGER]: [
+    Permission.VIEW_TEAM_ANALYTICS,
+    Permission.ASSIGN_TICKETS,
+    Permission.MANAGE_AGENTS,
+    Permission.VIEW_ASSIGNED_TICKETS,
+    Permission.REPLY_CUSTOMERS,
+    Permission.ESCALATE_TICKETS,
+    Permission.MANAGE_KNOWLEDGE_BASE,
+  ],
+
+  [UserRole.SUPPORT_AGENT]: [
+    Permission.VIEW_ASSIGNED_TICKETS,
+    Permission.REPLY_CUSTOMERS,
+    Permission.ESCALATE_TICKETS,
+    Permission.CHAT_WITH_AI,
+  ],
+
+  [UserRole.CUSTOMER]: [
+    Permission.CREATE_CONVERSATIONS,
+    Permission.VIEW_OWN_TICKETS,
+    Permission.CHAT_WITH_AI,
+  ],
+};
